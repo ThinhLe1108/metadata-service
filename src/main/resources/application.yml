@@ -7,45 +7,32 @@ server:
 spring:
   application:
     name: metadata-service
+
+  # ---------------- REDIS ----------------
   data:
     redis:
       url: redis://default:ItRBEjljWMXDHICNFJdCxBTjGIHPmzMk@centerbeam.proxy.rlwy.net:25969
 
-
-
-  #datasource:
-  #  url: jdbc:mysql://ballast.proxy.rlwy.net:37143/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-  #  username: root
-  #  password: ${DB_PASSWORD:usWWjahOWNcwHppqrsESYhBVXplBvJDI}
-  #  driver-class-name: com.mysql.cj.jdbc.Driver
-
-  #jpa:
-  #  database-platform: org.hibernate.dialect.MySQL8Dialect
-  #  hibernate:
-  #    ddl-auto: update
-  #  show-sql: true
-  #  properties:
-  #   hibernate:
-  #     format_sql: true
-  #      jdbc:
-  #       time_zone: UTC
-
-  cache:
-    type: none
-
+  # ---------------- DATABASE ----------------
   datasource:
     url: jdbc:mysql://shinkansen.proxy.rlwy.net:39756/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
     password: ${DB_PASSWORD:pNXyuMURcClGkORjMGPzkfZezcuwjhkj}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-    # JPA / Hibernate settings (adjust as needed)
+  # ---------------- JPA ----------------
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
     show-sql: false
 
+  # ---------------- CACHE ----------------
+  cache:
+    type: none
+
+
+# ---------------- SWAGGER ----------------
 springdoc:
   api-docs:
     path: /v3/api-docs
@@ -53,7 +40,7 @@ springdoc:
     path: /swagger-ui.html
 
 
-# --- CẤU HÌNH EUREKA CLIENT ---
+# ---------------- EUREKA CLIENT ----------------
 eureka:
   client:
     service-url:
@@ -61,23 +48,19 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 
-    hostname: 7fc3-118-69-61-33.ngrok-free.app
-
+  instance:
+    prefer-ip-address: true
     instance-id: metadata-service:${random.value}
-
-    secure-port-enabled: true
-    non-secure-port-enabled: false
-    secure-port: 443
-
-    home-page-url: https://7fc3-118-69-61-33.ngrok-free.app/
-    status-page-url: https://7fc3-118-69-61-33.ngrok-free.app/actuator/info
-    health-check-url: https://7fc3-118-69-61-33.ngrok-free.app/actuator/health
+    lease-renewal-interval-in-seconds: 10
 
 
+# ---------------- METADATA CONFIG ----------------
 metadata:
   key:
     pattern: "^[a-zA-Z_][a-zA-Z0-9_.]*$"
 
+
+# ---------------- ACTUATOR ----------------
 management:
   endpoints:
     web:
