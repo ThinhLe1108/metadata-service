@@ -166,11 +166,19 @@
 	<build>
 		<plugins>
 
-			<!-- Spring Boot Plugin (MUST specify version now) -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring.boot.version}</version>
+
+				<!-- THIS IS THE IMPORTANT PART -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<!-- Compiler -->
