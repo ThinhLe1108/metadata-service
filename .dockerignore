@@ -1,0 +1,19 @@
+# Maven build output
+target/
+
+# IDE and OS artifacts
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+*.log
+
+# Git
+.git
+.gitignore
+
+# Package manager caches
+mvnw.cmd
+mvnw
+.mvn/
