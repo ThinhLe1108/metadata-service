@@ -13,8 +13,7 @@ import java.util.Map;
 @RestController
 public class TestIdentityController {
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/api/test/identity")
+    @GetMapping("/api/metadata/public/test/identity")
     public Map<String, Object> testIdentity() {
 
         Authentication authentication =
